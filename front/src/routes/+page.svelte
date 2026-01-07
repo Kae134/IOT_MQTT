@@ -7,7 +7,9 @@
     'esp32-02': { name: 'Tokyo', country: 'Japan' },
     'esp32-03': { name: 'New York', country: 'USA' },
     'esp32-04': { name: 'Sydney', country: 'Australia' },
-    'esp32-05': { name: 'Rio', country: 'Brazil' }
+    'esp32-05': { name: 'Rio', country: 'Brazil' },
+    'esp32-06': { name: 'Longon', country: 'UK' },
+    'esp32-07': { name: 'Dubai', country: 'UAE' },
   };
   
   // State
