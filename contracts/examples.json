@@ -1,0 +1,133 @@
+{
+  "telemetry": {
+    "description": "Mesures périodiques envoyées par l'ESP32",
+    "topic": "classroom/esp32-01/telemetry",
+    "frequency": "Toutes les 1 seconde (configurable)",
+    "example": {
+      "deviceId": "esp32-01",
+      "ts": 1736080000,
+      "seq": 42,
+      "tempC": 22.4,
+      "humPct": 48.1,
+      "batteryPct": 87
+    },
+    "fields": {
+      "deviceId": "Identifiant unique du device (string)",
+      "ts": "Timestamp UNIX en secondes (number)",
+      "seq": "Numéro de séquence, incrémenté à chaque message (number)",
+      "tempC": "Température en degrés Celsius (number, 1 décimale)",
+      "humPct": "Humidité relative en pourcentage (number, 1 décimale)",
+      "batteryPct": "Niveau de batterie en pourcentage (number, entier)"
+    }
+  },
+
+  "event_boot": {
+    "description": "Événement envoyé au démarrage de l'ESP32",
+    "topic": "classroom/esp32-01/events",
+    "example": {
+      "deviceId": "esp32-01",
+      "ts": 1736080000,
+      "type": "boot"
+    },
+    "fields": {
+      "deviceId": "Identifiant unique du device (string)",
+      "ts": "Timestamp UNIX en secondes (number)",
+      "type": "Type d'événement : 'boot' (string)"
+    }
+  },
+
+  "event_ack": {
+    "description": "Accusé de réception d'une commande",
+    "topic": "classroom/esp32-01/events",
+    "example": {
+      "deviceId": "esp32-01",
+      "ts": 1736080050,
+      "type": "ack",
+      "cmd": "LED",
+      "ok": true
+    },
+    "fields": {
+      "deviceId": "Identifiant unique du device (string)",
+      "ts": "Timestamp UNIX en secondes (number)",
+      "type": "Type d'événement : 'ack' (string)",
+      "cmd": "Commande exécutée : 'LED' ou 'INTERVAL_MS' (string)",
+      "ok": "Succès de la commande : true/false (boolean)"
+    }
+  },
+
+  "event_error": {
+    "description": "Événement d'erreur",
+    "topic": "classroom/esp32-01/events",
+    "example": {
+      "deviceId": "esp32-01",
+      "ts": 1736080100,
+      "type": "error",
+      "message": "Sensor read failed"
+    },
+    "fields": {
+      "deviceId": "Identifiant unique du device (string)",
+      "ts": "Timestamp UNIX en secondes (number)",
+      "type": "Type d'événement : 'error' (string)",
+      "message": "Description de l'erreur (string)"
+    }
+  },
+
+  "cmd_led": {
+    "description": "Commande pour allumer/éteindre la LED",
+    "topic": "classroom/esp32-01/cmd",
+    "example": {
+      "cmd": "LED",
+      "value": 1
+    },
+    "fields": {
+      "cmd": "Nom de la commande : 'LED' (string)",
+      "value": "État de la LED : 0 = OFF, 1 = ON (number)"
+    }
+  },
+
+  "cmd_interval": {
+    "description": "Commande pour changer l'intervalle de télémétrie",
+    "topic": "classroom/esp32-01/cmd",
+    "example": {
+      "cmd": "INTERVAL_MS",
+      "value": 2000
+    },
+    "fields": {
+      "cmd": "Nom de la commande : 'INTERVAL_MS' (string)",
+      "value": "Nouvel intervalle en millisecondes (number)"
+    }
+  },
+
+  "status_online": {
+    "description": "Statut du device - En ligne",
+    "topic": "classroom/esp32-01/status",
+    "retained": true,
+    "example": {
+      "deviceId": "esp32-01",
+      "ts": 1736080000,
+      "status": "online"
+    },
+    "fields": {
+      "deviceId": "Identifiant unique du device (string)",
+      "ts": "Timestamp UNIX en secondes (number)",
+      "status": "État du device : 'online' (string)"
+    }
+  },
+
+  "status_offline": {
+    "description": "Statut du device - Hors ligne (via LWT)",
+    "topic": "classroom/esp32-01/status",
+    "retained": true,
+    "lwt": "Ce message est configuré comme Last Will & Testament",
+    "example": {
+      "deviceId": "esp32-01",
+      "ts": 1736080000,
+      "status": "offline"
+    },
+    "fields": {
+      "deviceId": "Identifiant unique du device (string)",
+      "ts": "Timestamp UNIX au moment de la configuration du LWT (number)",
+      "status": "État du device : 'offline' (string)"
+    }
+  }
+}
